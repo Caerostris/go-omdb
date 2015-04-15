@@ -30,8 +30,6 @@ import (
 //=======================================================================
 
 const baseURL string = "http://www.omdbapi.com/?"
-const plot string = "full"
-const tomatoes string = "true"
 
 //=======================================================================
 //							Structs
@@ -97,7 +95,7 @@ type MovieResult struct {
 
 //SearchMovies search for movies given a Title and year, Year is optional you can pass nil
 func SearchMovies(title string, year string) (*SearchResponse, error) {
-	resp, err := omdbAPIRequest(title, "", "", year)
+	resp, err := omdbAPIRequest(title, "", "", year, "", "")
 	if err != nil {
 		return nil, err
 	}
@@ -116,9 +114,9 @@ func SearchMovies(title string, year string) (*SearchResponse, error) {
 	return r, nil
 }
 
-//GetMovieByTitle returns a MovieResult given Title
-func GetMovieByTitle(title string, year string) (*MovieResult, error) {
-	resp, err := omdbAPIRequest("", "", title, year)
+//GetMovieByTitle returns a MovieResult given Title, a year, a plot string (short or full) and a boolean for tomatoes
+func GetMovieByTitle(title string, year string, plot string, tomatoes string) (*MovieResult, error) {
+	resp, err := omdbAPIRequest("", "", title, year, plot, tomatoes)
 	if err != nil {
 		return nil, err
 	}
@@ -136,9 +134,9 @@ func GetMovieByTitle(title string, year string) (*MovieResult, error) {
 	return r, nil
 }
 
-//GetMovieByImdbID returns a MovieResult given a ImdbID ex:"tt2015381"
-func GetMovieByImdbID(id string) (*MovieResult, error) {
-	resp, err := omdbAPIRequest("", id, "", "")
+//GetMovieByImdbID returns a MovieResult given a ImdbID ex:"tt2015381", a plot length (short or full) and a boolean string for tomatoes
+func GetMovieByImdbID(id string, plot string, tomatoes string) (*MovieResult, error) {
+	resp, err := omdbAPIRequest("", id, "", "", plot, tomatoes)
 	if err != nil {
 		return nil, err
 	}
@@ -156,7 +154,7 @@ func GetMovieByImdbID(id string) (*MovieResult, error) {
 	return r, nil
 }
 
-func omdbAPIRequest(s string, i string, t string, y string) (resp *http.Response, err error) {
+func omdbAPIRequest(s string, i string, t string, y string, plot string, tomatoes string) (resp *http.Response, err error) {
 	//s = Search Parameter, if this is != nil then its a searchMovies
 	//i = Id Parameter, if this is != nil then its a getMovieByImdbID
 	//t = Title Parameter, if this is != nil then its a getMovieByTitle
