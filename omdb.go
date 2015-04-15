@@ -1,5 +1,6 @@
 /*
 Copyright 2014 Kaissersoft Inc.
+Copyright 2015 Keno Schwalb
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +15,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package imdb
+package omdb
 
 import (
 	"encoding/json"
@@ -31,10 +32,6 @@ import (
 const baseURL string = "http://www.omdbapi.com/?"
 const plot string = "full"
 const tomatoes string = "true"
-
-//=======================================================================
-//							Global vars
-//=======================================================================
 
 //=======================================================================
 //							Structs

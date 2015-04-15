@@ -18,26 +18,26 @@ package main
 
 import (
 	"fmt"
-	imdb "github.com/eefret/go-imdb"
+	omdb "github.com/eefret/go-imdb"
 	"log"
 )
 
 func main() {
 
 	//Testing SearchMovies
-	res, err := imdb.SearchMovies("The fifth element", "")
+	res, err := omdb.SearchMovies("The fifth element", "")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//Testing GetMovieByTitle
-	res2, err := imdb.GetMovieByTitle("True Grit", "1969")
+	res2, err := omdb.GetMovieByTitle("True Grit", "1969")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	//Testing GetMovieByImdbId
-	res3, err := imdb.GetMovieByImdbId("tt2015381")
+	res3, err := omdb.GetMovieByImdbId("tt2015381")
 	if err != nil {
 		log.Fatal(err)
 	}
