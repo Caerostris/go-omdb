@@ -186,6 +186,10 @@ func omdbAPIRequest(s string, i string, t string, y string, plot string, tomatoe
 	}
 	URL.RawQuery = parameters.Encode()
 	res, err := http.Get(URL.String())
+	if err != nil {
+		return nil, err
+	}
+
 	err = checkErrorStatus(res.StatusCode)
 	if err != nil {
 		return nil, err
